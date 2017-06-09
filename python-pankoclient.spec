@@ -176,3 +176,4 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %files -n python-%{pypi_name}-doc
 %doc doc/build/html
 %license LICENSE
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/python-pankoclient/commit/?id=5cf6011c0e41a9e4d04013b95935bc9604ea077a
