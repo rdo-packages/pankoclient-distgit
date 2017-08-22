@@ -26,6 +26,7 @@ Summary:          Python API and CLI for OpenStack Panko
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
 
+BuildRequires:    git
 BuildRequires:    python-setuptools
 BuildRequires:    python2-devel
 BuildRequires:    python-pbr
@@ -48,6 +49,8 @@ Summary:          Documentation for OpenStack Panko API Client
 Group:            Documentation
 
 BuildRequires:    python-sphinx
+BuildRequires:    python-openstackdocstheme
+# FIXME: remove following line when a new release including https://review.openstack.org/#/c/476760/ is in u-c
 BuildRequires:    python-oslo-sphinx
 BuildRequires:    python-openstack-doc-tools
 BuildRequires:    python-osc-lib
@@ -106,7 +109,7 @@ provides a Python API (the pankoclient module) and a command-line tool.
 
 
 %prep
-%setup -q -n %{pypi_name}-%{upstream_version}
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -140,9 +143,8 @@ popd
 
 # Some env variables required to successfully build our doc
 export PATH=$PATH:%{buildroot}%{_bindir}
-export PYTHONPATH=.
 export LANG=en_US.utf8
-python setup.py build_sphinx
+%{__python2} setup.py build_sphinx -b html
 
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
