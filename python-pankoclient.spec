@@ -32,10 +32,13 @@ BuildRequires:    python2-devel
 BuildRequires:    python-pbr
 BuildRequires:    python-tools
 
+Requires:         python-keystoneauth1 >= 2.18.0
 Requires:         python-osc-lib >= 1.2.0
+Requires:         python-oslo-i18n >= 2.1.0
 Requires:         python-oslo-serialization >= 1.10.0
 Requires:         python-oslo-utils >= 3.18.0
-Requires:         python-keystoneauth1 >= 2.18.0
+Requires:         python-pbr
+Requires:         python-requests
 Requires:         python-six >= 1.9.0
 
 
@@ -83,10 +86,13 @@ BuildRequires:    python3-pbr
 BuildRequires:    python3-setuptools
 BuildRequires:    python3-tools
 
+Requires:         python3-keystoneauth1 >= 2.18.0
 Requires:         python3-osc-lib >= 1.2.0
+Requires:         python3-oslo-i18n >= 2.1.0
 Requires:         python3-oslo-serialization >= 1.10.0
 Requires:         python3-oslo-utils >= 3.18.0
-Requires:         python3-keystoneauth1 >= 2.18.0
+Requires:         python3-pbr
+Requires:         python3-requests
 Requires:         python3-six >= 1.9.0
 
 %description -n python3-%{pypi_name}
