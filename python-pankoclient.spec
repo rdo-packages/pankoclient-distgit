@@ -10,8 +10,8 @@
 %endif
 
 Name:             python-pankoclient
-Version:          XXX
-Release:          XXX
+Version:          0.3.0
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Panko
 
 License:          ASL 2.0
@@ -184,3 +184,9 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %files -n python-%{pypi_name}-doc
 %doc doc/build/html
 %license LICENSE
+
+%changelog
+* Thu Aug 24 2017 Alfredo Moralejo <amoralej@redhat.com> 0.3.0-1
+- Update to 0.3.0
+
+
