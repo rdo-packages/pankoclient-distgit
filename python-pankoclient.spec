@@ -196,3 +196,6 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %files -n python-%{pypi_name}-doc
 %doc doc/build/html
 %license LICENSE
+
+%changelog
+
