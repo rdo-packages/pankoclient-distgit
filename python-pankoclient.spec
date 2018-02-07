@@ -27,19 +27,19 @@ Summary:          Python API and CLI for OpenStack Panko
 
 
 BuildRequires:    git
-BuildRequires:    python-setuptools
+BuildRequires:    python2-setuptools
 BuildRequires:    python2-devel
-BuildRequires:    python-pbr
-BuildRequires:    python-tools
+BuildRequires:    python2-pbr
+BuildRequires:    python2-tools
 
-Requires:         python-keystoneauth1 >= 2.18.0
-Requires:         python-osc-lib >= 1.2.0
-Requires:         python-oslo-i18n >= 2.1.0
-Requires:         python-oslo-serialization >= 1.10.0
-Requires:         python-oslo-utils >= 3.18.0
-Requires:         python-pbr
-Requires:         python-requests
-Requires:         python-six >= 1.9.0
+Requires:         python2-keystoneauth1 >= 2.18.0
+Requires:         python2-osc-lib >= 1.2.0
+Requires:         python2-oslo-i18n >= 2.1.0
+Requires:         python2-oslo-serialization >= 1.10.0
+Requires:         python2-oslo-utils >= 3.18.0
+Requires:         python2-pbr
+Requires:         python2-requests
+Requires:         python2-six >= 1.9.0
 
 
 %description -n python2-%{pypi_name}
@@ -51,14 +51,14 @@ provides a Python API (the pankoclient module) and a command-line tool.
 Summary:          Documentation for OpenStack Panko API Client
 Group:            Documentation
 
-BuildRequires:    python-sphinx
-BuildRequires:    python-openstackdocstheme
+BuildRequires:    python2-sphinx
+BuildRequires:    python2-openstackdocstheme
 # FIXME: remove following line when a new release including https://review.openstack.org/#/c/476760/ is in u-c
-BuildRequires:    python-oslo-sphinx
-BuildRequires:    python-openstack-doc-tools
-BuildRequires:    python-osc-lib
+BuildRequires:    python2-oslo-sphinx
+BuildRequires:    python2-openstack-doc-tools
+BuildRequires:    python2-osc-lib
 # test
-BuildRequires:    python-babel
+BuildRequires:    python2-babel
 
 %description      doc
 This is a client library for Panko built on the Panko API. It
@@ -69,7 +69,7 @@ This package contains auto-generated documentation.
 
 %package -n python2-%{pypi_name}-tests
 Summary:          Python API and CLI for OpenStack Panko Tests
-Requires:         python-%{pypi_name} = %{version}-%{release}
+Requires:         python2-%{pypi_name} = %{version}-%{release}
 
 %description -n python2-%{pypi_name}-tests
 This is a client library for Panko built on the Panko API. It
