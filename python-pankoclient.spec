@@ -10,8 +10,8 @@
 %endif
 
 Name:             python-pankoclient
-Version:          XXX
-Release:          XXX
+Version:          0.4.0
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Panko
 
 License:          ASL 2.0
@@ -143,9 +143,14 @@ popd
 pushd %{py3dir}
 LANG=en_US.UTF-8 %{__python3} setup.py install --skip-build --root %{buildroot}
 popd
+mv %{buildroot}%{_bindir}/panko %{buildroot}%{_bindir}/panko-%{python3_version}
+ln -s ./panko-%{python3_version} %{buildroot}%{_bindir}/panko-3
 %endif
 
 %{__python2} setup.py install --skip-build --root %{buildroot}
+mv %{buildroot}%{_bindir}/panko %{buildroot}%{_bindir}/panko-%{python2_version}
+ln -s %{_bindir}/panko-%{python2_version} %{buildroot}%{_bindir}/panko-2
+ln -s %{_bindir}/panko-2 %{buildroot}%{_bindir}/panko
 
 # Some env variables required to successfully build our doc
 export PATH=$PATH:%{buildroot}%{_bindir}
@@ -158,6 +163,11 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %files -n python2-%{pypi_name}
 %doc README.rst
 %license LICENSE
+%{_bindir}/panko
+%{_bindir}/panko-2
+%{_bindir}/panko-%{python2_version}
+# XXX: man page build is broken
+#%{_mandir}/man1/panko.1*
 %{python2_sitelib}/pankoclient
 %{python2_sitelib}/*.egg-info
 %exclude %{python2_sitelib}/pankoclient/tests
@@ -171,6 +181,8 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
+%{_bindir}/panko-3
+%{_bindir}/panko-%{python3_version}
 %{python3_sitelib}/pankoclient
 %{python3_sitelib}/*.egg-info
 %exclude %{python3_sitelib}/pankoclient/tests
@@ -186,4 +198,7 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %license LICENSE
 
 %changelog
+* Wed Feb 14 2018 Alfredo Moralejo <amoralej@redhat.com> 0.4.0-1
+- Update to 0.4.0
+
 
