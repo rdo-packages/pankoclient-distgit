@@ -199,3 +199,4 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 
 %changelog
 
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/python-pankoclient/commit/?id=f29cdbdd2a8137f30d0866f0e080045ccdd40583
