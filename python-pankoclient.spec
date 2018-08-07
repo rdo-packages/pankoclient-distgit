@@ -10,7 +10,7 @@
 %endif
 
 Name:             python-pankoclient
-Version:          0.4.0
+Version:          0.4.1
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Panko
 
@@ -198,6 +198,9 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %license LICENSE
 
 %changelog
+* Tue Aug 07 2018 RDO <dev@lists.rdoproject.org> 0.4.1-1
+- Update to 0.4.1
+
 * Wed Feb 14 2018 Alfredo Moralejo <amoralej@redhat.com> 0.4.0-1
 - Update to 0.4.0
 
