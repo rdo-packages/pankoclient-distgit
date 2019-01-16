@@ -12,6 +12,7 @@
 %global pypi_name pankoclient
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+%global with_doc 1
 
 Name:             python-pankoclient
 Version:          XXX
@@ -53,7 +54,7 @@ Requires:         python%{pyver}-six >= 1.9.0
 This is a client library for Panko built on the Panko API. It
 provides a Python API (the pankoclient module) and a command-line tool.
 
-
+%if 0%{?with_doc}
 %package -n python-%{pypi_name}-doc
 Summary:          Documentation for OpenStack Panko API Client
 Group:            Documentation
@@ -71,6 +72,7 @@ provides a Python API (the pankoclient module) and a command-line tool
 (panko).
 
 This package contains auto-generated documentation.
+%endif
 
 %package -n python%{pyver}-%{pypi_name}-tests
 Summary:          Python API and CLI for OpenStack Panko Tests
@@ -104,6 +106,7 @@ rm -f {,test-}requirements.txt
 # Create a versioned binary for backwards compatibility until everything is pure py3
 ln -s panko %{buildroot}%{_bindir}/panko-%{pyver}
 
+%if 0%{?with_doc}
 # Some env variables required to successfully build our doc
 export PATH=$PATH:%{buildroot}%{_bindir}
 export LANG=en_US.utf8
@@ -111,6 +114,7 @@ export LANG=en_US.utf8
 
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
+%endif
 
 %files -n python%{pyver}-%{pypi_name}
 %doc README.rst
@@ -127,9 +131,11 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %license LICENSE
 %{pyver_sitelib}/pankoclient/tests
 
+%if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
 %doc doc/build/html
 %license LICENSE
+%endif
 
 %changelog
 
