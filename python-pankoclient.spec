@@ -45,6 +45,7 @@ Requires:         python%{pyver}-osc-lib >= 1.8.0
 Requires:         python%{pyver}-oslo-i18n >= 2.1.0
 Requires:         python%{pyver}-oslo-serialization >= 1.10.0
 Requires:         python%{pyver}-oslo-utils >= 3.18.0
+Requires:         python%{pyver}-osprofiler >= 1.4.0
 Requires:         python%{pyver}-pbr
 Requires:         python%{pyver}-requests
 Requires:         python%{pyver}-six >= 1.9.0
