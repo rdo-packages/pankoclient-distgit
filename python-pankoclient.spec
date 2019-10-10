@@ -15,8 +15,8 @@
 %global with_doc 1
 
 Name:             python-pankoclient
-Version:          XXX
-Release:          XXX
+Version:          0.7.0
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Panko
 
 License:          ASL 2.0
@@ -139,4 +139,7 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %endif
 
 %changelog
+* Thu Oct 10 2019 RDO <dev@lists.rdoproject.org> 0.7.0-1
+- Update to 0.7.0
+
 
