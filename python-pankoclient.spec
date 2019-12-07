@@ -62,7 +62,6 @@ Group:            Documentation
 
 BuildRequires:    python%{pyver}-sphinx
 BuildRequires:    python%{pyver}-openstackdocstheme
-BuildRequires:    python%{pyver}-openstack-doc-tools
 BuildRequires:    python%{pyver}-osc-lib
 # test
 BuildRequires:    python%{pyver}-babel
