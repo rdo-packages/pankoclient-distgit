@@ -1,14 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %global pypi_name pankoclient
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -26,32 +15,30 @@ Source0:          https://tarballs.openstack.org/%{name}/%{pypi_name}-%{upstream
 BuildArch:        noarch
 
 
-%package -n python%{pyver}-%{pypi_name}
+%package -n python3-%{pypi_name}
 Summary:          Python API and CLI for OpenStack Panko
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}}
-%if %{pyver} == 3
+%{?python_provide:%python_provide python3-%{pypi_name}}
 Obsoletes: python2-%{pypi_name} < %{version}-%{release}
-%endif
 
 
 BuildRequires:    git
-BuildRequires:    python%{pyver}-setuptools
-BuildRequires:    python%{pyver}-devel
-BuildRequires:    python%{pyver}-pbr
-BuildRequires:    python%{pyver}-tools
+BuildRequires:    python3-setuptools
+BuildRequires:    python3-devel
+BuildRequires:    python3-pbr
+BuildRequires:    python3-tools
 
-Requires:         python%{pyver}-keystoneauth1 >= 3.4.0
-Requires:         python%{pyver}-osc-lib >= 1.8.0
-Requires:         python%{pyver}-oslo-i18n >= 2.1.0
-Requires:         python%{pyver}-oslo-serialization >= 1.10.0
-Requires:         python%{pyver}-oslo-utils >= 3.18.0
-Requires:         python%{pyver}-osprofiler >= 1.4.0
-Requires:         python%{pyver}-pbr
-Requires:         python%{pyver}-requests
-Requires:         python%{pyver}-six >= 1.9.0
+Requires:         python3-keystoneauth1 >= 3.4.0
+Requires:         python3-osc-lib >= 1.8.0
+Requires:         python3-oslo-i18n >= 2.1.0
+Requires:         python3-oslo-serialization >= 1.10.0
+Requires:         python3-oslo-utils >= 3.18.0
+Requires:         python3-osprofiler >= 1.4.0
+Requires:         python3-pbr
+Requires:         python3-requests
+Requires:         python3-six >= 1.9.0
 
 
-%description -n python%{pyver}-%{pypi_name}
+%description -n python3-%{pypi_name}
 This is a client library for Panko built on the Panko API. It
 provides a Python API (the pankoclient module) and a command-line tool.
 
@@ -60,11 +47,11 @@ provides a Python API (the pankoclient module) and a command-line tool.
 Summary:          Documentation for OpenStack Panko API Client
 Group:            Documentation
 
-BuildRequires:    python%{pyver}-sphinx
-BuildRequires:    python%{pyver}-openstackdocstheme
-BuildRequires:    python%{pyver}-osc-lib
+BuildRequires:    python3-sphinx
+BuildRequires:    python3-openstackdocstheme
+BuildRequires:    python3-osc-lib
 # test
-BuildRequires:    python%{pyver}-babel
+BuildRequires:    python3-babel
 
 %description      doc
 This is a client library for Panko built on the Panko API. It
@@ -74,11 +61,11 @@ provides a Python API (the pankoclient module) and a command-line tool
 This package contains auto-generated documentation.
 %endif
 
-%package -n python%{pyver}-%{pypi_name}-tests
+%package -n python3-%{pypi_name}-tests
 Summary:          Python API and CLI for OpenStack Panko Tests
-Requires:         python%{pyver}-%{pypi_name} = %{version}-%{release}
+Requires:         python3-%{pypi_name} = %{version}-%{release}
 
-%description -n python%{pyver}-%{pypi_name}-tests
+%description -n python3-%{pypi_name}-tests
 This is a client library for Panko built on the Panko API. It
 provides a Python API (the pankoclient module) and a command-line tool.
 
@@ -97,39 +84,38 @@ rm -rf pankoclient.egg-info
 rm -f {,test-}requirements.txt
 
 %build
-%{pyver_build}
+%{py3_build}
 
 
 %install
-%{pyver_install}
+%{py3_install}
 
 # Create a versioned binary for backwards compatibility until everything is pure py3
-ln -s panko %{buildroot}%{_bindir}/panko-%{pyver}
+ln -s panko %{buildroot}%{_bindir}/panko-3
 
 %if 0%{?with_doc}
 # Some env variables required to successfully build our doc
 export PATH=$PATH:%{buildroot}%{_bindir}
 export LANG=en_US.utf8
-%{pyver_bin} setup.py build_sphinx -b html
-
+sphinx-build-3 -W -b html doc/source doc/build/html
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %endif
 
-%files -n python%{pyver}-%{pypi_name}
+%files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{_bindir}/panko
-%{_bindir}/panko-%{pyver}
+%{_bindir}/panko-3
 # XXX: man page build is broken
 #%{_mandir}/man1/panko.1*
-%{pyver_sitelib}/pankoclient
-%{pyver_sitelib}/*.egg-info
-%exclude %{pyver_sitelib}/pankoclient/tests
+%{python3_sitelib}/pankoclient
+%{python3_sitelib}/*.egg-info
+%exclude %{python3_sitelib}/pankoclient/tests
 
-%files -n python%{pyver}-%{pypi_name}-tests
+%files -n python3-%{pypi_name}-tests
 %license LICENSE
-%{pyver_sitelib}/pankoclient/tests
+%{python3_sitelib}/pankoclient/tests
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
