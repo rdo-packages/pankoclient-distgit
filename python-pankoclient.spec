@@ -29,9 +29,7 @@ BuildArch:        noarch
 %package -n python%{pyver}-%{pypi_name}
 Summary:          Python API and CLI for OpenStack Panko
 %{?python_provide:%python_provide python%{pyver}-%{pypi_name}}
-%if %{pyver} == 3
 Obsoletes: python2-%{pypi_name} < %{version}-%{release}
-%endif
 
 
 BuildRequires:    git
