@@ -34,7 +34,7 @@ Summary:          Python API and CLI for OpenStack Panko
 Obsoletes: python2-%{pypi_name} < %{version}-%{release}
 
 
-BuildRequires:    git
+BuildRequires:    git-core
 BuildRequires:    python3-setuptools
 BuildRequires:    python3-devel
 BuildRequires:    python3-pbr
